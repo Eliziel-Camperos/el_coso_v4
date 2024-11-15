@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div Clas="Col-md-4 offset-md-4">
+        <!--la tarjeta card-->
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarMateria/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" 
+                        value="{{mismaterias.codigo}}"" minlenght="0" maxlength="10" readonly required> <!--placeholder="Codigo Materia"-->
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" 
+                        placeholder="Nombre Materia"  maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numcreditos" name="numcreditos" class="form-control" 
+                        value="1"  max="9" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" Class="btn btn-secondary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+    </div>
+</div>
+{% endblock %}

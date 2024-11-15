@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+    <div class="row"><!--la fila-->
+        <div class="col"><!--columna izquierda-->
+            <h1>Mama</h1><!--tarjeta-->
+            <div class="card">
+                <div class="card-body">
+                    <form action="registrarMateria/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" 
+                            placeholder="Codigo Materia" minlenght="0" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="txtnombre" name="txtnombre" class="form-control" 
+                            placeholder="Nombre Materia"  maxlength="100" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="numcreditos" name="numcreditos" class="form-control" 
+                            value="1"  max="9" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" Class="btn btn-secondary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!--columna izquierda-->
+        <div class="col"><!--columna Derecha-->
+            <h1>Materias</h1>
+            <div class="table-responsive"><!--tabla responsiva-->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Creditos</th>
+                        <th colspan="2">#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in mismaterias %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{m.codigo}}</td>
+                            <td>{{m.nombre}}</td>
+                            <td>{{m.creditos}}</td>
+                            <td> <a href="seleccionarmateria/{{m.codigo}}" class="btn btn-dark">Editar</a> </td>
+                            <td> <a href="borrarMateria/{{m.codigo}}" class="btn btn-danger">Borrar</a> </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div><!--tabla responsiva-->
+        </div><!--columna Derecha-->
+    </div><!--la fila-->
+{% endblock %}
